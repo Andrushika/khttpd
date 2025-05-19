@@ -9,6 +9,8 @@ khttpd-objs := \
 	http_server.o \
 	main.o
 
+ccflags-y += -pg
+
 GIT_HOOKS := .git/hooks/applied
 all: $(GIT_HOOKS) http_parser.c htstress
 	make -C $(KDIR) M=$(PWD) modules

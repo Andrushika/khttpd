@@ -195,7 +195,7 @@ static void http_server_worker(struct work_struct *work)
     kfree(buf);
 }
 
-static struct work_struct *create_work(struct socket *socket)
+static noinline struct work_struct *create_work(struct socket *socket)
 {
     struct http_request *req;
 
@@ -209,7 +209,7 @@ static struct work_struct *create_work(struct socket *socket)
     return &req->khttpd_work;
 }
 
-static void free_work(void)
+static noinline void free_work(void)
 {
     struct http_request *req, *tmp;
     list_for_each_entry_safe (req, tmp, &daemon.workers, list) {
